@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb",
+
+  "rules": {
+    "space-before-function-paren": ["error", 
+    {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "never"
+    }],
+    "no-use-before-define": ["error", { "functions": false, "variables": false }],
+    "arrow-body-style": ["error", "never"],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+  }
+}
