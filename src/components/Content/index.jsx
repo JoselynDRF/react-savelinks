@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Subjects from '../Subjects';
 
-class Main extends Component {
+class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -10,9 +11,10 @@ class Main extends Component {
     return (
       <div>
         <h4> Main Component </h4>
+        <Subjects />
       </div>
     );
   }
 }
 
-export default Main;
+export default Content;

@@ -9,7 +9,6 @@
       "asyncArrow": "never"
     }],
     "no-use-before-define": ["error", { "functions": false, "variables": false }],
-    "arrow-body-style": ["error", "never"],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 }
