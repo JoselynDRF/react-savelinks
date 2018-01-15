@@ -16,8 +16,7 @@ class ResourcesSubject extends Component {
   render() {
     return (
       <div>
-        <span> ResourcesSubject Component </span>
-        <h1> Links sobre {this.props.subject.name} </h1>
+        <p> Links sobre {this.props.subject.name} </p>
       </div>
     );
   }
