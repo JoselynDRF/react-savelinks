@@ -74,6 +74,8 @@ class Subjects extends Component {
         }],
       }],
     };
+
+    this.addNewLink = this.addNewLink.bind(this);
   }
 
   // Change active subject - Update state
@@ -94,6 +96,33 @@ class Subjects extends Component {
     return this.state.subjects.filter(sub => sub.active)[0];
   }
 
+  addNewLink(event) {
+    event.preventDefault();
+
+    const newLink = {
+      id: uuid.v4(),
+      url: '',
+      title: event.target.text.value,
+      picture: '',
+      description: '',
+      observation: '',
+      autor: '',
+      date: Date.now(),
+      isFavorite: false,
+    };
+
+    const currentSubject = this.showSubjectResources();
+
+    const subjects = this.state.subjects.map((index) => {
+      const subject = index;
+      if (subject.id === currentSubject.id) {
+        subject.links = subject.links.concat(newLink);
+      } return subject;
+    });
+
+    this.setState({ subjects });
+  }
+
   render() {
     return (
       <div>
@@ -112,8 +141,7 @@ class Subjects extends Component {
           })}
         </Nav>
 
-        <ResourcesSubject subject={this.showSubjectResources()} />
-
+        <ResourcesSubject subject={this.showSubjectResources()} addNewLink={this.addNewLink} />
       </div>
     );
   }
