@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
+import axios from 'axios'; // eslint-disable-line
 
 import ResourcesSubject from '../ResourcesSubject';
 
@@ -79,6 +80,17 @@ class Subjects extends Component {
     this.addNewLink = this.addNewLink.bind(this);
     this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
     this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
+
+    // axios.get('http://localhost:3000/subjects')
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     this.setState({
+    //       subjects: response.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }
 
   // Change active subject - Update state

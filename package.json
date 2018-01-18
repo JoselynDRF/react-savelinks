@@ -28,6 +28,7 @@
     "webpack-dev-server": "^2.10.1"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "bootstrap": "^3.3.7",
     "install": "^0.10.2",
     "moment": "^2.20.1",
