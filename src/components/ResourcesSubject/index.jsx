@@ -11,20 +11,19 @@ const propTypes = {
     name: PropTypes.string,
     links: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+  openInputLink: PropTypes.bool.isRequired,
+  handleOpenInputLink: PropTypes.func.isRequired,
+  handleCloseInputLink: PropTypes.func.isRequired,
   addNewLink: PropTypes.func.isRequired,
 };
 
 class ResourcesSubject extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      openInputLink: false,
-    };
-
-    this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
-    this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
+    this.state = {};
   }
 
+  // Get favorites links
   getFavoritesResources() {
     const listFavorites = this.props.subject.links.filter(link => link.isFavorite);
     return listFavorites.map((favorite) => {
@@ -34,6 +33,7 @@ class ResourcesSubject extends Component {
     });
   }
 
+  // Get others links (no favorites)
   getOthersResources() {
     const listOthers = this.props.subject.links.filter(link => !link.isFavorite);
     return listOthers.map((resource) => {
@@ -43,25 +43,12 @@ class ResourcesSubject extends Component {
     });
   }
 
-  handleOpenInputLink(event) {
-    event.preventDefault();
-    this.setState({
-      openInputLink: true,
-    });
-  }
-
-  handleCloseInputLink(event) {
-    event.preventDefault();
-    this.setState({
-      openInputLink: false,
-    });
-  }
-
-  renderOpenText() { // eslint-disable-line
-    if (this.state.openInputLink) {
+  // Render input Links
+  renderInputLink() { // eslint-disable-line
+    if (this.props.openInputLink) {
       return (
         <InputLink
-          onCloseInputLink={this.handleCloseInputLink}
+          onCloseInputLink={this.props.handleCloseInputLink}
           onAddNewLink={this.props.addNewLink}
         />
       );
@@ -72,8 +59,8 @@ class ResourcesSubject extends Component {
     return (
       <div>
         <h4> Links sobre {this.props.subject.name} </h4>
-        <Button onClick={this.handleOpenInputLink}> Add link </Button>
-        {this.renderOpenText()}
+        <Button onClick={this.props.handleOpenInputLink}> Add link </Button>
+        {this.renderInputLink()}
         <h6> Favoritos </h6>
         {this.getFavoritesResources()}
         <h6> Otros </h6>

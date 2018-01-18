@@ -8,6 +8,7 @@ class Subjects extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      openInputLink: false,
       subjects: [{
         id: uuid.v4(),
         name: 'ReactJS',
@@ -76,6 +77,8 @@ class Subjects extends Component {
     };
 
     this.addNewLink = this.addNewLink.bind(this);
+    this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
+    this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
   }
 
   // Change active subject - Update state
@@ -96,6 +99,7 @@ class Subjects extends Component {
     return this.state.subjects.filter(sub => sub.active)[0];
   }
 
+  // Add new link (from input)
   addNewLink(event) {
     event.preventDefault();
 
@@ -120,7 +124,26 @@ class Subjects extends Component {
       } return subject;
     });
 
-    this.setState({ subjects });
+    this.setState({
+      subjects,
+      openInputLink: false,
+    });
+  }
+
+  // Open inputLink
+  handleOpenInputLink(event) {
+    event.preventDefault();
+    this.setState({
+      openInputLink: true,
+    });
+  }
+
+  // Close inputLink
+  handleCloseInputLink(event) {
+    event.preventDefault();
+    this.setState({
+      openInputLink: false,
+    });
   }
 
   render() {
@@ -141,7 +164,13 @@ class Subjects extends Component {
           })}
         </Nav>
 
-        <ResourcesSubject subject={this.showSubjectResources()} addNewLink={this.addNewLink} />
+        <ResourcesSubject
+          subject={this.showSubjectResources()}
+          openInputLink={this.state.openInputLink}
+          handleOpenInputLink={this.handleOpenInputLink}
+          handleCloseInputLink={this.handleCloseInputLink}
+          addNewLink={this.addNewLink}
+        />
       </div>
     );
   }
