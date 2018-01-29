@@ -12,7 +12,12 @@ function InputLink({ onCloseInputLink, onAddNewLink }) {
     <div>
       <form onSubmit={onAddNewLink} className="form-container">
         <div className="form-group">
-          <input type="text" className="form-control" placeholder="URL do novo link" name="text" />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="URL del nuevo link"
+            name="text"
+          />
         </div>
         <div className="d-flex justify-content-end">
           <button className="btn btn-secondary" onClick={onCloseInputLink}> Cerrar </button>

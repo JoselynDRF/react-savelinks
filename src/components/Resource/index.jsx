@@ -8,6 +8,7 @@ const propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     url: PropTypes.string,
+    isFavorite: PropTypes.boolean,
   }).isRequired,
 };
 
@@ -24,8 +25,21 @@ class Resource extends Component {
           <div>
             <img className="resource-img" src={this.props.data.picture} alt="" />
           </div>
-          <div className="">
-            <span className="resource-title"> {this.props.data.title} </span> <br />
+
+          <div className="resource-content">
+            <div className="d-flex justify-content-between mb-1">
+              <span className="resource-title"> {this.props.data.title} </span>
+
+              <div>
+                {
+                  this.props.data.isFavorite
+                  ? <span className="icons"><i className="fas fa-star" /></span>
+                  : <span className="icons"><i className="far fa-star" /></span>
+                }
+                <span className="icons"><i className="fas fa-trash" /></span>
+              </div>
+            </div>
+
             <span className="resource-description">
               {this.props.data.description}
             </span> <br />

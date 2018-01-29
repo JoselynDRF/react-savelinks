@@ -23,3 +23,17 @@
 .link {
   font-size: 14px;
 }
+
+.resource-content {
+  width: 100%;
+}
+
+.icons {
+  color: #526278;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.icons:hover i::before {
+  color: #48576a;
+}
