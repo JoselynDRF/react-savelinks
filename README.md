@@ -1,4 +1,4 @@
-# ReactJS - BasicTwitter
+# ReactJS - SaveLinks
 Proyecto con fines educativos para poner en práctica el uso de la librería ReactJS.
 
 ## Instrucciones:
