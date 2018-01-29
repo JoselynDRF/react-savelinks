@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
 import PropTypes from 'prop-types';
+import './resourcesSubject.css';
 
 import Resource from '../Resource';
 import InputLink from '../InputLink';
@@ -57,14 +57,39 @@ class ResourcesSubject extends Component {
 
   render() {
     return (
-      <div>
-        <h4> Links sobre {this.props.subject.name} </h4>
-        <Button onClick={this.props.handleOpenInputLink}> Add link </Button>
+      <div className="resources-container">
+        <div className="resources-header d-flex justify-content-between">
+          <span className="resources-title"> Links sobre {this.props.subject.name} </span>
+          <div>
+            <span className="icon-filter"> <i className="fas fa-filter" /> </span>
+            <span
+              className="icon-add"
+              onClick={this.props.handleOpenInputLink}
+              role="presentation"
+              onKeyDown={this.props.handleOpenInputLink}
+            >
+              <i className="fas fa-plus-circle" />
+            </span>
+          </div>
+        </div>
+
         {this.renderInputLink()}
-        <h6> Favoritos </h6>
-        {this.getFavoritesResources()}
-        <h6> Otros </h6>
-        {this.getOthersResources()}
+
+        <div>
+          <div className="favorites-container">
+            <span> Favoritos </span>
+          </div>
+          {this.getFavoritesResources()}
+
+        </div>
+
+        <div>
+          <div className="others-container">
+            <span> Otros </span>
+          </div>
+          {this.getOthersResources()}
+        </div>
+
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
-import axios from 'axios'; // eslint-disable-line
+import './subjects.css';
 
 import ResourcesSubject from '../ResourcesSubject';
 
@@ -16,9 +16,9 @@ class Subjects extends Component {
         active: true,
         links: [{
           id: uuid.v4(),
-          url: 'www.google.com',
+          url: 'https://www.google.pt',
           title: 'Link 1 about ReactJS',
-          picture: 'http://thecodeplayer.com/uploads/media/2rT2vdx.jpg',
+          picture: 'img/react.png',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
           observation: 'Interesante para aprender React',
           autor: 'JoselynDRF',
@@ -27,9 +27,9 @@ class Subjects extends Component {
         },
         {
           id: uuid.v4(),
-          url: 'www.google.com',
+          url: 'https://www.google.pt',
           title: 'Link 2 about ReactJS',
-          picture: 'http://thecodeplayer.com/uploads/media/2rT2vdx.jpg',
+          picture: 'img/react.png',
           description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
           observation: 'React mas avanzado',
           autor: 'JoselynDRF',
@@ -38,11 +38,11 @@ class Subjects extends Component {
         },
         {
           id: uuid.v4(),
-          url: 'www.google.com',
+          url: 'https://www.google.pt',
           title: 'Link 3 about ReactJS',
-          picture: 'http://thecodeplayer.com/uploads/media/2rT2vdx.jpg',
+          picture: 'img/react.png',
           description: 'Lorem ipsum dolor sit amet',
-          observation: 'Este esta chévere',
+          observation: 'React para novatos',
           autor: 'JoselynDRF',
           date: Date.now(),
           isFavorite: true,
@@ -50,26 +50,26 @@ class Subjects extends Component {
       },
       {
         id: uuid.v4(),
-        name: 'Donuts',
+        name: 'AngularJS',
         active: false,
         links: [{
           id: uuid.v4(),
-          url: 'www.google.com',
-          title: 'Link A sobre donuts',
-          picture: 'http://thecodeplayer.com/uploads/media/2rT2vdx.jpg',
+          url: 'https://www.google.pt',
+          title: 'Link A sobre AngularJS',
+          picture: 'img/angular.png',
           description: 'T aliquip ex ea commodo consequat.',
-          observation: 'Deliciosas',
+          observation: 'Angular para novatos',
           autor: 'JoselynDRF',
           date: Date.now(),
           isFavorite: true,
         },
         {
           id: uuid.v4(),
-          url: 'www.google.com',
-          title: 'Link B sobre donuts',
-          picture: 'http://thecodeplayer.com/uploads/media/2rT2vdx.jpg',
+          url: 'https://www.google.pt',
+          title: 'Link B sobre AngularJS',
+          picture: 'img/angular.png',
           description: 'T aliquip ex ea commodo consequat.',
-          observation: 'Rellenas',
+          observation: 'Angular avanzado',
           autor: 'JoselynDRF',
           date: Date.now(),
           isFavorite: false,
@@ -80,17 +80,6 @@ class Subjects extends Component {
     this.addNewLink = this.addNewLink.bind(this);
     this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
     this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
-
-    // axios.get('http://localhost:3000/subjects')
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     this.setState({
-    //       subjects: response.data,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }
 
   // Change active subject - Update state
@@ -117,12 +106,12 @@ class Subjects extends Component {
 
     const newLink = {
       id: uuid.v4(),
-      url: '',
-      title: event.target.text.value,
-      picture: '',
-      description: '',
-      observation: '',
-      autor: '',
+      url: event.target.text.value,
+      title: 'New link',
+      picture: 'img/youtube.jpg',
+      description: 'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
+      observation: 'Nuevo link',
+      autor: 'JoselynDRF',
       date: Date.now(),
       isFavorite: false,
     };
@@ -166,6 +155,7 @@ class Subjects extends Component {
             return (
               <NavItem key={sub.id}>
                 <NavLink
+                  className="nav-subjects"
                   onClick={event => this.changeActiveSubject(event, sub)}
                   active={sub.active}
                 >

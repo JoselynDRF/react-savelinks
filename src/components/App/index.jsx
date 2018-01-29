@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import 'normalize-css';
 import './app.css';
 
 import Header from '../Header';
@@ -10,15 +9,14 @@ class App extends Component {
     super();
     this.state = {
       user: {
-        name: 'Crazy Team',
-        photoProfile: 'http://thecodeplayer.com/uploads/media/2rT2vdx.jpg',
+        name: 'Friki Team',
+        photoProfile: 'img/user-profile.png',
       },
     };
   }
   render() {
     return (
       <div>
-        <h1> App Component </h1>
         <Header user={this.state.user} />
         <Content />
       </div>

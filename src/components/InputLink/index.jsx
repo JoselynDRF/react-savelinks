@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './inputLink.css';
 
 const propTypes = {
   onCloseInputLink: PropTypes.func.isRequired,
@@ -8,13 +9,18 @@ const propTypes = {
 
 function InputLink({ onCloseInputLink, onAddNewLink }) {
   return (
-    <form onSubmit={onAddNewLink}>
-      <input type="text" name="text" />
-      <div>
-        <button onClick={onCloseInputLink}> Cerrar </button>
-        <button type="submit"> Enviar </button>
-      </div>
-    </form>
+    <div>
+      <form onSubmit={onAddNewLink} className="form-container">
+        <div className="form-group">
+          <input type="text" className="form-control" placeholder="URL do novo link" name="text" />
+        </div>
+        <div className="d-flex justify-content-end">
+          <button className="btn btn-secondary" onClick={onCloseInputLink}> Cerrar </button>
+          <button type="submit" className="btn btn-form-primary"> Enviar </button>
+        </div>
+      </form>
+      <hr />
+    </div>
   );
 }
 

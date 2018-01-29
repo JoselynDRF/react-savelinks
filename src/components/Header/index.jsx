@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './header.css';
 
 const propTypes = {
   user: PropTypes.shape({
@@ -10,10 +11,11 @@ const propTypes = {
 
 function Header({ user }) {
   return (
-    <header>
-      <h4> Header Component </h4>
-      <img src={user.photoProfile} alt="" height="50px" />
-      <span> {user.name} </span>
+    <header className="header-container">
+      <div className="container">
+        <img className="profile-img" src={user.photoProfile} alt="" />
+        <span className="user-name"> {user.name} </span>
+      </div>
     </header>
   );
 }

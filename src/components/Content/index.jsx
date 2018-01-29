@@ -9,8 +9,7 @@ class Content extends Component {
 
   render() {
     return (
-      <div>
-        <h4> Main Component </h4>
+      <div className="container mt-4">
         <Subjects />
       </div>
     );
