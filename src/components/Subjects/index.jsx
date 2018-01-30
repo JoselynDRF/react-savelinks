@@ -22,6 +22,7 @@ class Subjects extends Component {
     this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
     this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
     this.handleFavorites = this.handleFavorites.bind(this);
+    this.deleteLink = this.deleteLink.bind(this);
   }
 
   // Get subjects from service
@@ -124,6 +125,28 @@ class Subjects extends Component {
     });
   }
 
+  // Delete link
+  deleteLink(event, id) {
+    event.preventDefault();
+
+    const currentSubject = this.showSubjectResources();
+
+    const subjects = this.state.subjects.map((subject) => {
+      if (subject.id === currentSubject.id) {
+        currentSubject.links.map((index) => {
+          const link = index;
+          if (link.id === id) {
+            link.isDeleted = true;
+          }
+        });
+      } return subject;
+    });
+
+    this.setState({
+      subjects,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -150,6 +173,7 @@ class Subjects extends Component {
           handleCloseInputLink={this.handleCloseInputLink}
           addNewLink={this.addNewLink}
           handleFavorites={this.handleFavorites}
+          deleteLink={this.deleteLink}
         />
       </div>
     );

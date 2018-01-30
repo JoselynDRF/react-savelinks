@@ -26,20 +26,35 @@ class ResourcesSubject extends Component {
 
   // Get favorites links
   getFavoritesResources() {
-    const listFavorites = this.props.subject.links.filter(link => link.isFavorite);
+    const listFavorites = this.props.subject.links.filter((link) => {
+      if (!link.isDeleted) return link.isFavorite;
+    });
+
     return listFavorites.map((favorite) => {
       return (
-        <Resource key={favorite.id} data={favorite} handleFavorites={this.props.handleFavorites} />
+        <Resource
+          key={favorite.id}
+          data={favorite}
+          handleFavorites={this.props.handleFavorites}
+          deleteLink={this.props.deleteLink}
+        />
       );
     });
   }
 
   // Get others links (no favorites)
   getOthersResources() {
-    const listOthers = this.props.subject.links.filter(link => !link.isFavorite);
+    const listOthers = this.props.subject.links.filter((link) => {
+      if (!link.isDeleted) return !link.isFavorite;
+    });
     return listOthers.map((resource) => {
       return (
-        <Resource key={resource.id} data={resource} handleFavorites={this.props.handleFavorites} />
+        <Resource
+          key={resource.id}
+          data={resource}
+          handleFavorites={this.props.handleFavorites}
+          deleteLink={this.props.deleteLink}
+        />
       );
     });
   }

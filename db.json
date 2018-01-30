@@ -14,7 +14,8 @@
           "observation": "Interesante para aprender React",
           "autor": "JoselynDRF",
           "date": "",
-          "isFavorite": true
+          "isFavorite": true,
+          "isDeleted": false
         },
         {
           "id": "2",
@@ -25,7 +26,8 @@
           "observation": "React mas avanzado",
           "autor": "JoselynDRF",
           "date": "",
-          "isFavorite": false
+          "isFavorite": false,
+          "isDeleted": false
         },
         {
           "id": "3",
@@ -36,7 +38,20 @@
           "observation": "React para novatos",
           "autor": "JoselynDRF",
           "date": "",
-          "isFavorite": true
+          "isFavorite": true,
+          "isDeleted": false
+        },
+        {
+          "id": "4",
+          "url": "https://www.google.pt",
+          "title": "Link eliminado",
+          "picture": "img/react.png",
+          "description": "Lorem ipsum dolor sit amet",
+          "observation": "React",
+          "autor": "JoselynDRF",
+          "date": "",
+          "isFavorite": false,
+          "isDeleted": true
         }
       ]
     },
@@ -54,7 +69,8 @@
           "observation": "Angular para novatos",
           "autor": "JoselynDRF",
           "date": "",
-          "isFavorite": true
+          "isFavorite": true,
+          "isDeleted": false
         },
         {
           "id": "2",
@@ -65,7 +81,8 @@
           "observation": "Angular avanzado",
           "autor": "JoselynDRF",
           "date": "",
-          "isFavorite": false
+          "isFavorite": false,
+          "isDeleted": false
         }
       ]
     }

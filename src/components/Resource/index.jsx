@@ -44,7 +44,14 @@ class Resource extends Component {
                     : <i className="far fa-star" />
                   }
                 </span>
-                <span className="icons"><i className="fas fa-trash" /></span>
+                <span
+                  className="icons"
+                  onClick={e => this.props.deleteLink(e, this.props.data.id)}
+                  role="presentation"
+                  onKeyDown={e => this.props.deleteLink(e, this.props.data.id)}
+                >
+                  <i className="fas fa-trash" />
+                </span>
               </div>
             </div>
 
