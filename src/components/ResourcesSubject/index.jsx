@@ -15,6 +15,7 @@ const propTypes = {
   handleOpenInputLink: PropTypes.func.isRequired,
   handleCloseInputLink: PropTypes.func.isRequired,
   addNewLink: PropTypes.func.isRequired,
+  handleFavorites: PropTypes.func.isRequired,
 };
 
 class ResourcesSubject extends Component {
@@ -28,7 +29,7 @@ class ResourcesSubject extends Component {
     const listFavorites = this.props.subject.links.filter(link => link.isFavorite);
     return listFavorites.map((favorite) => {
       return (
-        <Resource key={favorite.id} data={favorite} />
+        <Resource key={favorite.id} data={favorite} handleFavorites={this.props.handleFavorites} />
       );
     });
   }
@@ -38,7 +39,7 @@ class ResourcesSubject extends Component {
     const listOthers = this.props.subject.links.filter(link => !link.isFavorite);
     return listOthers.map((resource) => {
       return (
-        <Resource key={resource.id} data={resource} />
+        <Resource key={resource.id} data={resource} handleFavorites={this.props.handleFavorites} />
       );
     });
   }

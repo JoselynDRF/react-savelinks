@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
-import './subjects.css';
-
+import axios from 'axios';
 import ResourcesSubject from '../ResourcesSubject';
+import './subjects.css';
 
 class Subjects extends Component {
   constructor(props) {
@@ -11,75 +11,30 @@ class Subjects extends Component {
     this.state = {
       openInputLink: false,
       subjects: [{
-        id: uuid.v4(),
-        name: 'ReactJS',
+        id: '',
+        name: '',
         active: true,
-        links: [{
-          id: uuid.v4(),
-          url: 'https://www.google.pt',
-          title: 'Link 1 about ReactJS',
-          picture: 'img/react.png',
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-          observation: 'Interesante para aprender React',
-          autor: 'JoselynDRF',
-          date: Date.now() - 180000,
-          isFavorite: true,
-        },
-        {
-          id: uuid.v4(),
-          url: 'https://www.google.pt',
-          title: 'Link 2 about ReactJS',
-          picture: 'img/react.png',
-          description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-          observation: 'React mas avanzado',
-          autor: 'JoselynDRF',
-          date: Date.now() - 1800,
-          isFavorite: false,
-        },
-        {
-          id: uuid.v4(),
-          url: 'https://www.google.pt',
-          title: 'Link 3 about ReactJS',
-          picture: 'img/react.png',
-          description: 'Lorem ipsum dolor sit amet',
-          observation: 'React para novatos',
-          autor: 'JoselynDRF',
-          date: Date.now(),
-          isFavorite: true,
-        }],
-      },
-      {
-        id: uuid.v4(),
-        name: 'AngularJS',
-        active: false,
-        links: [{
-          id: uuid.v4(),
-          url: 'https://www.google.pt',
-          title: 'Link A sobre AngularJS',
-          picture: 'img/angular.png',
-          description: 'T aliquip ex ea commodo consequat.',
-          observation: 'Angular para novatos',
-          autor: 'JoselynDRF',
-          date: Date.now(),
-          isFavorite: true,
-        },
-        {
-          id: uuid.v4(),
-          url: 'https://www.google.pt',
-          title: 'Link B sobre AngularJS',
-          picture: 'img/angular.png',
-          description: 'T aliquip ex ea commodo consequat.',
-          observation: 'Angular avanzado',
-          autor: 'JoselynDRF',
-          date: Date.now(),
-          isFavorite: false,
-        }],
+        links: [],
       }],
     };
 
     this.addNewLink = this.addNewLink.bind(this);
     this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
     this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
+    this.handleFavorites = this.handleFavorites.bind(this);
+  }
+
+  // Get subjects from service
+  componentDidMount() {
+    axios.get('http://localhost:3000/db')
+      .then((response) => {
+        this.setState({
+          subjects: response.data.subjects,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   // Change active subject - Update state
@@ -147,6 +102,28 @@ class Subjects extends Component {
     });
   }
 
+  // Change state favorite
+  handleFavorites(event, id) {
+    event.preventDefault();
+
+    const currentSubject = this.showSubjectResources();
+
+    const subjects = this.state.subjects.map((subject) => {
+      if (subject.id === currentSubject.id) {
+        currentSubject.links.map((index) => {
+          const link = index;
+          if (link.id === id) {
+            link.isFavorite = !link.isFavorite;
+          }
+        });
+      } return subject;
+    });
+
+    this.setState({
+      subjects,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -172,6 +149,7 @@ class Subjects extends Component {
           handleOpenInputLink={this.handleOpenInputLink}
           handleCloseInputLink={this.handleCloseInputLink}
           addNewLink={this.addNewLink}
+          handleFavorites={this.handleFavorites}
         />
       </div>
     );

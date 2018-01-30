@@ -4,12 +4,14 @@ import './resource.css';
 
 const propTypes = {
   data: PropTypes.shape({
+    id: PropTypes.string,
     picture: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     url: PropTypes.string,
     isFavorite: PropTypes.boolean,
   }).isRequired,
+  handleFavorites: PropTypes.func.isRequired,
 };
 
 class Resource extends Component {
@@ -31,11 +33,17 @@ class Resource extends Component {
               <span className="resource-title"> {this.props.data.title} </span>
 
               <div>
-                {
-                  this.props.data.isFavorite
-                  ? <span className="icons"><i className="fas fa-star" /></span>
-                  : <span className="icons"><i className="far fa-star" /></span>
-                }
+                <span
+                  className="icons"
+                  onClick={e => this.props.handleFavorites(e, this.props.data.id)}
+                  role="presentation"
+                  onKeyDown={e => this.props.handleFavorites(e, this.props.data.id)}
+                >
+                  { this.props.data.isFavorite
+                    ? <i className="fas fa-star" />
+                    : <i className="far fa-star" />
+                  }
+                </span>
                 <span className="icons"><i className="fas fa-trash" /></span>
               </div>
             </div>
