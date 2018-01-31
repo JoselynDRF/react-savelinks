@@ -12,6 +12,7 @@ const propTypes = {
     isFavorite: PropTypes.boolean,
   }).isRequired,
   handleFavorites: PropTypes.func.isRequired,
+  deleteLink: PropTypes.func.isRequired,
 };
 
 class Resource extends Component {

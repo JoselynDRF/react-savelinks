@@ -3,6 +3,7 @@ import { Nav, NavItem, NavLink } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
 import axios from 'axios';
 import ResourcesSubject from '../ResourcesSubject';
+import InputSubject from '../InputSubject';
 import './subjects.css';
 
 class Subjects extends Component {
@@ -10,6 +11,7 @@ class Subjects extends Component {
     super(props);
     this.state = {
       openInputLink: false,
+      openInputSubject: false,
       subjects: [{
         id: '',
         name: '',
@@ -23,6 +25,10 @@ class Subjects extends Component {
     this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
     this.handleFavorites = this.handleFavorites.bind(this);
     this.deleteLink = this.deleteLink.bind(this);
+
+    this.handleOpenInputSubject = this.handleOpenInputSubject.bind(this);
+    this.handleCloseInputSubject = this.handleCloseInputSubject.bind(this);
+    this.addNewSubject = this.addNewSubject.bind(this);
   }
 
   // Get subjects from service
@@ -82,7 +88,7 @@ class Subjects extends Component {
 
       axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -131,7 +137,7 @@ class Subjects extends Component {
 
       axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -163,7 +169,7 @@ class Subjects extends Component {
 
       axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -177,12 +183,77 @@ class Subjects extends Component {
     });
   }
 
+  // Open input Subject
+  handleOpenInputSubject(event) {
+    event.preventDefault();
+    this.setState({
+      openInputSubject: true,
+    });
+  }
+
+  // Close input subject
+  handleCloseInputSubject(event) {
+    event.preventDefault();
+    this.setState({
+      openInputSubject: false,
+    });
+  }
+
+  // Creat new subject
+  addNewSubject(event) {
+    event.preventDefault();
+
+    const newSubject = {
+      id: uuid.v4(),
+      name: event.target.text.value,
+      active: false,
+      links: [],
+    };
+
+    const subjects = this.state.subjects.concat(newSubject);
+
+    axios.post('http://localhost:3000/subjects/', newSubject)
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    this.setState({
+      subjects,
+      openInputSubject: false,
+    });
+  }
+
+  // Render input Subject
+  renderInputSubject() { // eslint-disable-line
+    if (this.state.openInputSubject) {
+      return (
+        <InputSubject
+          onCloseInputSubject={this.handleCloseInputSubject}
+          onAddNewSubject={this.addNewSubject}
+        />
+      );
+    }
+  }
+
   render() {
     return (
       <div>
         <div className="d-flex justify-content-end">
-          <span className="icon-create"><i className="fas fa-pencil-alt" /></span>
+          <span
+            className="icon-create"
+            onClick={e => this.handleOpenInputSubject(e)}
+            role="presentation"
+            onKeyDown={e => this.handleOpenInputSubject(e)}
+          >
+            <i className="fas fa-pencil-alt" />
+          </span>
         </div>
+
+        {this.renderInputSubject()}
+
         <Nav tabs>
           {this.state.subjects.map((sub) => {
             return (
