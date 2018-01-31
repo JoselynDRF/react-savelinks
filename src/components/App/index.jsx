@@ -9,7 +9,7 @@ class App extends Component {
     super();
     this.state = {
       user: {
-        name: 'Friki Team',
+        name: 'JoselynDRF',
         photoProfile: 'img/user-profile.png',
       },
     };

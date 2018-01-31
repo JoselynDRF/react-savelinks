@@ -78,7 +78,17 @@ class Subjects extends Component {
       const subject = index;
       if (subject.id === currentSubject.id) {
         subject.links = subject.links.concat(newLink);
-      } return subject;
+      }
+
+      axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      return subject;
     });
 
     this.setState({
@@ -117,7 +127,17 @@ class Subjects extends Component {
             link.isFavorite = !link.isFavorite;
           }
         });
-      } return subject;
+      }
+
+      axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      return subject;
     });
 
     this.setState({
@@ -139,7 +159,17 @@ class Subjects extends Component {
             link.isDeleted = true;
           }
         });
-      } return subject;
+      }
+
+      axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      return subject;
     });
 
     this.setState({
@@ -150,6 +180,9 @@ class Subjects extends Component {
   render() {
     return (
       <div>
+        <div className="d-flex justify-content-end">
+          <span className="icon-create"><i className="fas fa-pencil-alt" /></span>
+        </div>
         <Nav tabs>
           {this.state.subjects.map((sub) => {
             return (

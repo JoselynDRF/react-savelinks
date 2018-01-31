@@ -26,7 +26,7 @@
           "observation": "React mas avanzado",
           "autor": "JoselynDRF",
           "date": "",
-          "isFavorite": false,
+          "isFavorite": true,
           "isDeleted": false
         },
         {
@@ -38,7 +38,7 @@
           "observation": "React para novatos",
           "autor": "JoselynDRF",
           "date": "",
-          "isFavorite": true,
+          "isFavorite": false,
           "isDeleted": false
         },
         {
