@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
 import axios from 'axios';
 
 import ResourcesSubject from './ResourcesSubject';
 import InputSubject from './InputSubject';
+import NavSubjects from './NavSubjects';
 import { post, put } from './../../HttpServices/index';
 import './subjects.css';
 
@@ -22,6 +22,7 @@ class Subjects extends Component {
       }],
     };
 
+    this.handlechangeSubject = this.handlechangeSubject.bind(this);
     this.handleOpenInputSubject = this.handleOpenInputSubject.bind(this);
     this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
     this.handleCloseInputSubject = this.handleCloseInputSubject.bind(this);
@@ -41,7 +42,7 @@ class Subjects extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log('GET error', error);
       });
   }
 
@@ -151,7 +152,7 @@ class Subjects extends Component {
   // ******************** UPDATE STATE ******************** //
 
   // Change active subject - Update subjects
-  changeActiveSubject(event, current) {
+  handlechangeSubject(event, current) {
     event.preventDefault();
     const subjects = this.updateActiveSubject(current);
     this.setState({
@@ -260,20 +261,10 @@ class Subjects extends Component {
 
         {this.renderInputSubject()}
 
-        <Nav tabs>
-          {this.state.subjects.map(sub => (
-            <NavItem key={sub.id}>
-              <NavLink
-                className="nav-subjects"
-                onClick={event => this.changeActiveSubject(event, sub)}
-                active={sub.active}
-              >
-                {sub.name}
-              </NavLink>
-            </NavItem>
-            ))
-          }
-        </Nav>
+        <NavSubjects
+          subjects={this.state.subjects}
+          handlechangeSubject={this.handlechangeSubject}
+        />
 
         <ResourcesSubject
           subject={this.getActiveSubjectResources()}
