@@ -5,6 +5,7 @@ import axios from 'axios';
 import ResourcesSubject from './ResourcesSubject';
 import InputSubject from './InputSubject';
 import NavSubjects from './NavSubjects';
+import ButtonNew from './ButtonNew';
 import { post, put } from './../../HttpServices/index';
 import './subjects.css';
 
@@ -248,17 +249,7 @@ class Subjects extends Component {
   render() {
     return (
       <div>
-        <div className="d-flex justify-content-end">
-          <span
-            className="icon-create"
-            onClick={e => this.handleOpenInputSubject(e)}
-            role="presentation"
-            onKeyDown={() => {}}
-          >
-            <i className="fas fa-pencil-alt" />
-          </span>
-        </div>
-
+        <ButtonNew handleOpenInputSubject={this.handleOpenInputSubject} />
         {this.renderInputSubject()}
 
         <NavSubjects
