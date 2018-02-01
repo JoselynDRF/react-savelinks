@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
 import axios from 'axios';
+
 import ResourcesSubject from './ResourcesSubject';
 import InputSubject from './InputSubject';
+import { post, put } from './../../HttpServices/index';
 import './subjects.css';
 
 class Subjects extends Component {
@@ -20,15 +22,14 @@ class Subjects extends Component {
       }],
     };
 
-    this.addNewLink = this.addNewLink.bind(this);
-    this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
-    this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
-    this.handleFavorites = this.handleFavorites.bind(this);
-    this.deleteLink = this.deleteLink.bind(this);
-
     this.handleOpenInputSubject = this.handleOpenInputSubject.bind(this);
+    this.handleOpenInputLink = this.handleOpenInputLink.bind(this);
     this.handleCloseInputSubject = this.handleCloseInputSubject.bind(this);
-    this.addNewSubject = this.addNewSubject.bind(this);
+    this.handleCloseInputLink = this.handleCloseInputLink.bind(this);
+    this.handleAddNewSubject = this.handleAddNewSubject.bind(this);
+    this.handleAddNewLink = this.handleAddNewLink.bind(this);
+    this.handleDeleteLink = this.handleDeleteLink.bind(this);
+    this.handleFavorites = this.handleFavorites.bind(this);
   }
 
   // Get subjects from service
@@ -44,28 +45,37 @@ class Subjects extends Component {
       });
   }
 
-  // Change active subject - Update state
-  changeActiveSubject(event, current) {
-    event.preventDefault();
+  // Get current subject resources
+  getActiveSubjectResources() {
+    return this.state.subjects.filter(subject => subject.active)[0];
+  }
 
-    const subjects = this.state.subjects.map((index) => {
+  // Update active subject
+  updateActiveSubject(current) {
+    return this.state.subjects.map((index) => {
       const subject = index;
       subject.active = (subject.id === current.id);
       return subject;
     });
-
-    this.setState({ subjects });
   }
 
-  // Show current subject resources
-  showSubjectResources() {
-    return this.state.subjects.filter(sub => sub.active)[0];
+  // Create new subject
+  createNewSubject(event) {
+    const newSubject = {
+      id: uuid.v4(),
+      name: event.target.text.value,
+      active: false,
+      links: [],
+    };
+
+    const subjects = this.state.subjects.concat(newSubject);
+
+    post(newSubject); // Update json server
+    return subjects;
   }
 
-  // Add new link (from input)
-  addNewLink(event) {
-    event.preventDefault();
-
+  // Create new link
+  createNewLink(event) {
     const newLink = {
       id: uuid.v4(),
       url: event.target.text.value,
@@ -78,7 +88,7 @@ class Subjects extends Component {
       isFavorite: false,
     };
 
-    const currentSubject = this.showSubjectResources();
+    const currentSubject = this.getActiveSubjectResources();
 
     const subjects = this.state.subjects.map((index) => {
       const subject = index;
@@ -86,20 +96,74 @@ class Subjects extends Component {
         subject.links = subject.links.concat(newLink);
       }
 
-      // axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
-      //   .then((response) => {
-      //     // console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-
+      put(subject.id, subject); // Update json server
       return subject;
     });
 
+    return subjects;
+  }
+
+  // Delete link
+  updateDeletedLink(id) {
+    const currentSubject = this.getActiveSubjectResources();
+
+    const subjects = this.state.subjects.map((subject) => {
+      if (subject.id === currentSubject.id) {
+        currentSubject.links.map((index) => {
+          const link = index;
+          if (link.id === id) {
+            link.isDeleted = true;
+          }
+          return link;
+        });
+      }
+
+      put(subject.id, subject); // Update json server
+      return subject;
+    });
+
+    return subjects;
+  }
+
+  // Update links favorites
+  updateFavorites(id) {
+    const currentSubject = this.getActiveSubjectResources();
+
+    const subjects = this.state.subjects.map((subject) => {
+      if (subject.id === currentSubject.id) {
+        currentSubject.links.map((index) => {
+          const link = index;
+          if (link.id === id) {
+            link.isFavorite = !link.isFavorite;
+          }
+          return link;
+        });
+      }
+
+      put(subject.id, subject); // Update json server
+      return subject;
+    });
+
+    return subjects;
+  }
+
+
+  // ******************** UPDATE STATE ******************** //
+
+  // Change active subject - Update subjects
+  changeActiveSubject(event, current) {
+    event.preventDefault();
+    const subjects = this.updateActiveSubject(current);
     this.setState({
       subjects,
-      openInputLink: false,
+    });
+  }
+
+  // Open inputSubject
+  handleOpenInputSubject(event) {
+    event.preventDefault();
+    this.setState({
+      openInputSubject: true,
     });
   }
 
@@ -111,6 +175,14 @@ class Subjects extends Component {
     });
   }
 
+  // Close inputSubject
+  handleCloseInputSubject(event) {
+    event.preventDefault();
+    this.setState({
+      openInputSubject: false,
+    });
+  }
+
   // Close inputLink
   handleCloseInputLink(event) {
     event.preventDefault();
@@ -119,120 +191,54 @@ class Subjects extends Component {
     });
   }
 
-  // Change state favorite
+  // Add new subject (event from inputSubject) - Update subjects
+  handleAddNewSubject(event) {
+    event.preventDefault();
+    const subjects = this.createNewSubject(event);
+    this.setState({
+      subjects,
+      openInputSubject: false,
+    });
+  }
+
+  // Add new link (event from inputLink) - Update subjects
+  handleAddNewLink(event) {
+    event.preventDefault();
+    const subjects = this.createNewLink(event);
+    this.setState({
+      subjects,
+      openInputLink: false,
+    });
+  }
+
+  // Delete link - Update subjects
+  handleDeleteLink(event, id) {
+    event.preventDefault();
+    const subjects = this.updateDeletedLink(id);
+    this.setState({
+      subjects,
+    });
+  }
+
+  // Change state favorite - Update subjects
   handleFavorites(event, id) {
     event.preventDefault();
-
-    const currentSubject = this.showSubjectResources();
-
-    const subjects = this.state.subjects.map((subject) => {
-      if (subject.id === currentSubject.id) {
-        currentSubject.links.map((index) => {
-          const link = index;
-          if (link.id === id) {
-            link.isFavorite = !link.isFavorite;
-          }
-        });
-      }
-
-      // axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
-      //   .then((response) => {
-      //     // console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-
-      return subject;
-    });
-
+    const subjects = this.updateFavorites(id);
     this.setState({
       subjects,
     });
   }
 
-  // Delete link
-  deleteLink(event, id) {
-    event.preventDefault();
 
-    const currentSubject = this.showSubjectResources();
+  // ******************** RENDER ******************** //
 
-    const subjects = this.state.subjects.map((subject) => {
-      if (subject.id === currentSubject.id) {
-        currentSubject.links.map((index) => {
-          const link = index;
-          if (link.id === id) {
-            link.isDeleted = true;
-          }
-        });
-      }
-
-      // axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
-      //   .then((response) => {
-      //     // console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-
-      return subject;
-    });
-
-    this.setState({
-      subjects,
-    });
-  }
-
-  // Open input Subject
-  handleOpenInputSubject(event) {
-    event.preventDefault();
-    this.setState({
-      openInputSubject: true,
-    });
-  }
-
-  // Close input subject
-  handleCloseInputSubject(event) {
-    event.preventDefault();
-    this.setState({
-      openInputSubject: false,
-    });
-  }
-
-  // Creat new subject
-  addNewSubject(event) {
-    event.preventDefault();
-
-    const newSubject = {
-      id: uuid.v4(),
-      name: event.target.text.value,
-      active: false,
-      links: [],
-    };
-
-    const subjects = this.state.subjects.concat(newSubject);
-
-    // axios.post('http://localhost:3000/subjects/', newSubject)
-    //   .then((response) => {
-    //     // console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    this.setState({
-      subjects,
-      openInputSubject: false,
-    });
-  }
-
-  // Render input Subject
+  // Render inputSubject
   renderInputSubject() { // eslint-disable-line
     if (this.state.openInputSubject) {
       return (
         <InputSubject
-          onCloseInputSubject={this.handleCloseInputSubject}
-          onAddNewSubject={this.addNewSubject}
+          handleCloseInputSubject={this.handleCloseInputSubject}
+          handleAddNewSubject={this.handleAddNewSubject}
         />
       );
     }
@@ -246,7 +252,7 @@ class Subjects extends Component {
             className="icon-create"
             onClick={e => this.handleOpenInputSubject(e)}
             role="presentation"
-            onKeyDown={e => this.handleOpenInputSubject(e)}
+            onKeyDown={() => {}}
           >
             <i className="fas fa-pencil-alt" />
           </span>
@@ -255,29 +261,28 @@ class Subjects extends Component {
         {this.renderInputSubject()}
 
         <Nav tabs>
-          {this.state.subjects.map((sub) => {
-            return (
-              <NavItem key={sub.id}>
-                <NavLink
-                  className="nav-subjects"
-                  onClick={event => this.changeActiveSubject(event, sub)}
-                  active={sub.active}
-                >
-                  {sub.name}
-                </NavLink>
-              </NavItem>
-            );
-          })}
+          {this.state.subjects.map(sub => (
+            <NavItem key={sub.id}>
+              <NavLink
+                className="nav-subjects"
+                onClick={event => this.changeActiveSubject(event, sub)}
+                active={sub.active}
+              >
+                {sub.name}
+              </NavLink>
+            </NavItem>
+            ))
+          }
         </Nav>
 
         <ResourcesSubject
-          subject={this.showSubjectResources()}
+          subject={this.getActiveSubjectResources()}
           openInputLink={this.state.openInputLink}
           handleOpenInputLink={this.handleOpenInputLink}
           handleCloseInputLink={this.handleCloseInputLink}
-          addNewLink={this.addNewLink}
+          handleAddNewLink={this.handleAddNewLink}
           handleFavorites={this.handleFavorites}
-          deleteLink={this.deleteLink}
+          handleDeleteLink={this.handleDeleteLink}
         />
       </div>
     );

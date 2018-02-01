@@ -14,9 +14,9 @@ const propTypes = {
   openInputLink: PropTypes.bool.isRequired,
   handleOpenInputLink: PropTypes.func.isRequired,
   handleCloseInputLink: PropTypes.func.isRequired,
-  addNewLink: PropTypes.func.isRequired,
+  handleAddNewLink: PropTypes.func.isRequired,
   handleFavorites: PropTypes.func.isRequired,
-  deleteLink: PropTypes.func.isRequired,
+  handleDeleteLink: PropTypes.func.isRequired,
 };
 
 class ResourcesSubject extends Component {
@@ -37,7 +37,7 @@ class ResourcesSubject extends Component {
           key={favorite.id}
           data={favorite}
           handleFavorites={this.props.handleFavorites}
-          deleteLink={this.props.deleteLink}
+          handleDeleteLink={this.props.handleDeleteLink}
         />
       );
     });
@@ -54,7 +54,7 @@ class ResourcesSubject extends Component {
           key={resource.id}
           data={resource}
           handleFavorites={this.props.handleFavorites}
-          deleteLink={this.props.deleteLink}
+          handleDeleteLink={this.props.handleDeleteLink}
         />
       );
     });
@@ -65,8 +65,8 @@ class ResourcesSubject extends Component {
     if (this.props.openInputLink) {
       return (
         <InputLink
-          onCloseInputLink={this.props.handleCloseInputLink}
-          onAddNewLink={this.props.addNewLink}
+          handleCloseInputLink={this.props.handleCloseInputLink}
+          handleAddNewLink={this.props.handleAddNewLink}
         />
       );
     }
