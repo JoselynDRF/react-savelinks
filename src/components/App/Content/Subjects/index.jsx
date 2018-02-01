@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import uuid from 'uuid'; // eslint-disable-line
 import axios from 'axios';
-import ResourcesSubject from '../ResourcesSubject';
-import InputSubject from '../InputSubject';
+import ResourcesSubject from './ResourcesSubject';
+import InputSubject from './InputSubject';
 import './subjects.css';
 
 class Subjects extends Component {
@@ -86,13 +86,13 @@ class Subjects extends Component {
         subject.links = subject.links.concat(newLink);
       }
 
-      axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
-        .then((response) => {
-          // console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      // axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
+      //   .then((response) => {
+      //     // console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
 
       return subject;
     });
@@ -135,13 +135,13 @@ class Subjects extends Component {
         });
       }
 
-      axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
-        .then((response) => {
-          // console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      // axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
+      //   .then((response) => {
+      //     // console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
 
       return subject;
     });
@@ -167,13 +167,13 @@ class Subjects extends Component {
         });
       }
 
-      axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
-        .then((response) => {
-          // console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      // axios.put(`http://localhost:3000/subjects/${subject.id}`, subject)
+      //   .then((response) => {
+      //     // console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
 
       return subject;
     });
@@ -212,13 +212,13 @@ class Subjects extends Component {
 
     const subjects = this.state.subjects.concat(newSubject);
 
-    axios.post('http://localhost:3000/subjects/', newSubject)
-      .then((response) => {
-        // console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios.post('http://localhost:3000/subjects/', newSubject)
+    //   .then((response) => {
+    //     // console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
     this.setState({
       subjects,

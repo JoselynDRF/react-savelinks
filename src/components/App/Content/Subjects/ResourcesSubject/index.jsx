@@ -3,8 +3,8 @@ import uuid from 'uuid'; // eslint-disable-line
 import PropTypes from 'prop-types';
 import './resourcesSubject.css';
 
-import Resource from '../Resource';
-import InputLink from '../InputLink';
+import Resource from './Resource';
+import InputLink from './InputLink';
 
 const propTypes = {
   subject: PropTypes.shape({
@@ -16,6 +16,7 @@ const propTypes = {
   handleCloseInputLink: PropTypes.func.isRequired,
   addNewLink: PropTypes.func.isRequired,
   handleFavorites: PropTypes.func.isRequired,
+  deleteLink: PropTypes.func.isRequired,
 };
 
 class ResourcesSubject extends Component {

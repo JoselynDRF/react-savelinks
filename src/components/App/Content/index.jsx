@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Subjects from '../Subjects';
+import Subjects from './Subjects';
 
 class Content extends Component {
   constructor(props) {
