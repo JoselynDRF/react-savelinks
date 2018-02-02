@@ -5,9 +5,10 @@ import './resourcesSubject.css';
 
 import Resource from './Resource';
 import InputLink from './InputLink';
+import ResourcesHeader from './ResourcesHeader';
 
 const propTypes = {
-  subject: PropTypes.shape({
+  activeSubject: PropTypes.shape({
     name: PropTypes.string,
     links: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
@@ -26,39 +27,23 @@ class ResourcesSubject extends Component {
   }
 
   // Get favorites links
-  getFavoritesResources() {
-    const listFavorites = this.props.subject.links.filter((link) => {
-      if (!link.isDeleted) return link.isFavorite;
-    });
+  getLinksFavorites() {
+    const listFavorites = this.props.activeSubject.links
+      .filter(link => ((!link.isDeleted) ? link.isFavorite : false));
 
-    return listFavorites.map((favorite) => {
-      return (
-        <Resource
-          key={favorite.id}
-          link={favorite}
-          handleFavorites={this.props.handleFavorites}
-          handleDeleteLink={this.props.handleDeleteLink}
-        />
-      );
-    });
+    return listFavorites;
   }
 
   // Get others links (no favorites)
-  getOthersResources() {
-    const listOthers = this.props.subject.links.filter((link) => {
-      if (!link.isDeleted) return !link.isFavorite;
-    });
-    return listOthers.map((resource) => {
-      return (
-        <Resource
-          key={resource.id}
-          link={resource}
-          handleFavorites={this.props.handleFavorites}
-          handleDeleteLink={this.props.handleDeleteLink}
-        />
-      );
-    });
+  getOthersLinks() {
+    const othersLinks = this.props.activeSubject.links
+      .filter(link => ((!link.isDeleted) ? !link.isFavorite : false));
+
+    return othersLinks;
   }
+
+
+  // ******************** RENDER ******************** //
 
   // Render input Links
   renderInputLink() { // eslint-disable-line
@@ -72,23 +57,41 @@ class ResourcesSubject extends Component {
     }
   }
 
+  // Render favorites
+  renderLinksFavorites() {
+    const linksFavorites = this.getLinksFavorites();
+
+    return linksFavorites.map(favorite => (
+      <Resource
+        key={favorite.id}
+        link={favorite}
+        handleFavorites={this.props.handleFavorites}
+        handleDeleteLink={this.props.handleDeleteLink}
+      />
+    ));
+  }
+
+  // Render others links (no favorites)
+  renderOthersLinks() {
+    const othersLinks = this.getOthersLinks();
+
+    return othersLinks.map(resource => (
+      <Resource
+        key={resource.id}
+        link={resource}
+        handleFavorites={this.props.handleFavorites}
+        handleDeleteLink={this.props.handleDeleteLink}
+      />
+    ));
+  }
+
   render() {
     return (
       <div className="resources-container">
-        <div className="resources-header d-flex justify-content-between">
-          <span className="resources-title"> Links sobre {this.props.subject.name} </span>
-          <div>
-            <span className="icon-filter"> <i className="fas fa-filter" /> </span>
-            <span
-              className="icon-add"
-              onClick={this.props.handleOpenInputLink}
-              role="presentation"
-              onKeyDown={this.props.handleOpenInputLink}
-            >
-              <i className="fas fa-plus-circle" />
-            </span>
-          </div>
-        </div>
+        <ResourcesHeader
+          activeSubject={this.props.activeSubject}
+          handleOpenInputLink={this.props.handleOpenInputLink}
+        />
 
         {this.renderInputLink()}
 
@@ -96,15 +99,14 @@ class ResourcesSubject extends Component {
           <div className="favorites-container">
             <span> Favoritos </span>
           </div>
-          {this.getFavoritesResources()}
-
+          {this.renderLinksFavorites()}
         </div>
 
         <div>
           <div className="others-container">
             <span> Otros </span>
           </div>
-          {this.getOthersResources()}
+          {this.renderOthersLinks()}
         </div>
 
       </div>

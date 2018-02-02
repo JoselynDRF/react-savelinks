@@ -6,7 +6,7 @@ import ResourcesSubject from './ResourcesSubject';
 import InputSubject from './InputSubject';
 import NavSubjects from './NavSubjects';
 import ButtonNew from './ButtonNew';
-import { post, put } from './../../HttpServices/index';
+// import { post, put } from './../../HttpServices/index';
 import './subjects.css';
 
 class Subjects extends Component {
@@ -72,7 +72,7 @@ class Subjects extends Component {
 
     const subjects = this.state.subjects.concat(newSubject);
 
-    post(newSubject); // Update json server
+    // post(newSubject); // Update json server
     return subjects;
   }
 
@@ -98,7 +98,7 @@ class Subjects extends Component {
         subject.links = subject.links.concat(newLink);
       }
 
-      put(subject.id, subject); // Update json server
+      // put(subject.id, subject); // Update json server
       return subject;
     });
 
@@ -120,7 +120,7 @@ class Subjects extends Component {
         });
       }
 
-      put(subject.id, subject); // Update json server
+      // put(subject.id, subject); // Update json server
       return subject;
     });
 
@@ -142,7 +142,7 @@ class Subjects extends Component {
         });
       }
 
-      put(subject.id, subject); // Update json server
+      // put(subject.id, subject); // Update json server
       return subject;
     });
 
@@ -258,7 +258,7 @@ class Subjects extends Component {
         />
 
         <ResourcesSubject
-          subject={this.getActiveSubjectResources()}
+          activeSubject={this.getActiveSubjectResources()}
           openInputLink={this.state.openInputLink}
           handleOpenInputLink={this.handleOpenInputLink}
           handleCloseInputLink={this.handleCloseInputLink}
