@@ -29,7 +29,7 @@ function Resource({ link, handleFavorites, handleDeleteLink }) {
             <div>
               <span
                 className="icons"
-                onClick={e => handleFavorites(e, link.id)}
+                onClick={() => handleFavorites(link.id)}
                 role="presentation"
                 onKeyDown={() => {}}
               >
@@ -38,7 +38,7 @@ function Resource({ link, handleFavorites, handleDeleteLink }) {
 
               <span
                 className="icons"
-                onClick={e => handleDeleteLink(e, link.id)}
+                onClick={() => handleDeleteLink(link.id)}
                 role="presentation"
                 onKeyDown={() => {}}
               >

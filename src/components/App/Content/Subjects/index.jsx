@@ -162,32 +162,28 @@ class Subjects extends Component {
   }
 
   // Open inputSubject
-  handleOpenInputSubject(event) {
-    event.preventDefault();
+  handleOpenInputSubject() {
     this.setState({
       openInputSubject: true,
     });
   }
 
   // Open inputLink
-  handleOpenInputLink(event) {
-    event.preventDefault();
+  handleOpenInputLink() {
     this.setState({
       openInputLink: true,
     });
   }
 
   // Close inputSubject
-  handleCloseInputSubject(event) {
-    event.preventDefault();
+  handleCloseInputSubject() {
     this.setState({
       openInputSubject: false,
     });
   }
 
   // Close inputLink
-  handleCloseInputLink(event) {
-    event.preventDefault();
+  handleCloseInputLink() {
     this.setState({
       openInputLink: false,
     });
@@ -214,8 +210,7 @@ class Subjects extends Component {
   }
 
   // Delete link - Update subjects
-  handleDeleteLink(event, id) {
-    event.preventDefault();
+  handleDeleteLink(id) {
     const subjects = this.updateDeletedLink(id);
     this.setState({
       subjects,
@@ -223,8 +218,7 @@ class Subjects extends Component {
   }
 
   // Change state favorite - Update subjects
-  handleFavorites(event, id) {
-    event.preventDefault();
+  handleFavorites(id) {
     const subjects = this.updateFavorites(id);
     this.setState({
       subjects,

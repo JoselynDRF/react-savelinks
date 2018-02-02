@@ -14,7 +14,7 @@ function ButtonNew({ handleOpenInputSubject }) {
         <Col className="text-right">
           <span
             className="icon-new"
-            onClick={e => handleOpenInputSubject(e)}
+            onClick={handleOpenInputSubject}
             role="presentation"
             onKeyDown={() => {}}
           >
