@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './resource.css';
 
 const propTypes = {
-  data: PropTypes.shape({
+  link: PropTypes.shape({
     id: PropTypes.string,
     picture: PropTypes.string,
     title: PropTypes.string,
@@ -15,45 +15,40 @@ const propTypes = {
   handleDeleteLink: PropTypes.func.isRequired,
 };
 
-function Resource({ data, handleFavorites, handleDeleteLink }) {
+function Resource({ link, handleFavorites, handleDeleteLink }) {
   return (
     <div className="m-2 resource-container">
       <div className="d-flex flex-row">
         <div>
-          <img className="resource-img" src={data.picture} alt="" />
+          <img className="resource-img" src={link.picture} alt="" />
         </div>
 
         <div className="resource-content">
           <div className="d-flex justify-content-between mb-1">
-            <span className="resource-title"> {data.title} </span>
-
+            <span className="resource-title"> {link.title} </span>
             <div>
               <span
                 className="icons"
-                onClick={e => handleFavorites(e, data.id)}
+                onClick={e => handleFavorites(e, link.id)}
                 role="presentation"
-                onKeyDown={e => handleFavorites(e, data.id)}
+                onKeyDown={() => {}}
               >
-                { data.isFavorite
-                  ? <i className="fas fa-star" />
-                  : <i className="far fa-star" />
-                }
+                { link.isFavorite ? <i className="fas fa-star" /> : <i className="far fa-star" /> }
               </span>
+
               <span
                 className="icons"
-                onClick={e => handleDeleteLink(e, data.id)}
+                onClick={e => handleDeleteLink(e, link.id)}
                 role="presentation"
-                onKeyDown={e => handleDeleteLink(e, data.id)}
+                onKeyDown={() => {}}
               >
                 <i className="fas fa-trash" />
               </span>
             </div>
           </div>
 
-          <span className="resource-description">
-            {data.description}
-          </span> <br />
-          <a className="link" href={data.url}> {data.url} </a>
+          <span className="resource-description"> {link.description} </span> <br />
+          <a className="link" href={link.url}> {link.url} </a>
         </div>
       </div>
     </div>

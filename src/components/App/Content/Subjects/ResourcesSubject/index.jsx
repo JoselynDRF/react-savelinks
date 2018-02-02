@@ -35,7 +35,7 @@ class ResourcesSubject extends Component {
       return (
         <Resource
           key={favorite.id}
-          data={favorite}
+          link={favorite}
           handleFavorites={this.props.handleFavorites}
           handleDeleteLink={this.props.handleDeleteLink}
         />
@@ -52,7 +52,7 @@ class ResourcesSubject extends Component {
       return (
         <Resource
           key={resource.id}
-          data={resource}
+          link={resource}
           handleFavorites={this.props.handleFavorites}
           handleDeleteLink={this.props.handleDeleteLink}
         />

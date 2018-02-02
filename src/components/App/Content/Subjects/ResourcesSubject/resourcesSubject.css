@@ -1,8 +1,8 @@
 .resources-container {
   background-color: #f8f8f8;
+  border-radius: 10px;
   margin: 20px;
   padding: 20px;
-  border-radius: 10px;
 }
 
 .resources-header {
@@ -16,15 +16,15 @@
 
 .icon-add {
   color: #526278;
-  font-size: 22px;
   cursor: pointer;
+  font-size: 22px;
   margin: 0 4px;
 }
 
 .icon-filter {
   color: #526278;
-  font-size: 20px;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .icon-add:hover i::before {
@@ -37,8 +37,8 @@
 
 .favorites-container, .others-container {
   background-color: #526278;
-  padding: 2px 10px;
+  color: #fefefe;
   font-size: 13px;
   font-weight: 500;
-  color: #fefefe;
+  padding: 2px 10px;
 }

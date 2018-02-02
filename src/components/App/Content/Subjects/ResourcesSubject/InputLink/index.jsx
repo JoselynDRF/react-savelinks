@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col, Form, FormGroup, Input, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import './inputLink.css';
 
@@ -10,20 +11,23 @@ const propTypes = {
 function InputLink({ handleCloseInputLink, handleAddNewLink }) {
   return (
     <div>
-      <form onSubmit={handleAddNewLink} className="form-container">
-        <div className="form-group">
-          <input
+      <Form onSubmit={handleAddNewLink} className="form-container">
+        <FormGroup>
+          <Input
             type="text"
             className="form-control"
             placeholder="URL del nuevo link"
             name="text"
           />
-        </div>
-        <div className="d-flex justify-content-end">
-          <button className="btn btn-secondary" onClick={handleCloseInputLink}> Cerrar </button>
-          <button type="submit" className="btn btn-form-primary"> Enviar </button>
-        </div>
-      </form>
+        </FormGroup>
+
+        <Row>
+          <Col className="text-right">
+            <Button className="btn btn-secondary" onClick={handleCloseInputLink}> Cerrar </Button>
+            <Button type="submit" className="btn btn-form-primary"> Enviar </Button>
+          </Col>
+        </Row>
+      </Form>
       <hr />
     </div>
   );
