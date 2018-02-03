@@ -5,7 +5,7 @@ import axios from 'axios';
 import ResourcesSubject from './ResourcesSubject';
 import InputSubject from './InputSubject';
 import NavSubjects from './NavSubjects';
-import ButtonNew from './ButtonNew';
+import BarSubjects from './BarSubjects';
 // import { post, put } from './../../HttpServices/index';
 import './subjects.css';
 
@@ -13,6 +13,7 @@ class Subjects extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      filterText: '',
       openInputLink: false,
       openInputSubject: false,
       subjects: [{
@@ -32,6 +33,8 @@ class Subjects extends Component {
     this.handleAddNewLink = this.handleAddNewLink.bind(this);
     this.handleDeleteLink = this.handleDeleteLink.bind(this);
     this.handleFavorites = this.handleFavorites.bind(this);
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   // Get subjects from service
@@ -240,10 +243,36 @@ class Subjects extends Component {
     }
   }
 
+  // NNUEVOOOOOOOOOOOOOOOOOOOOOOOOS
+  handleSearch(event) {
+    this.setState({
+      filterText: event.target.value,
+    });
+  }
+
+  filterSearch() {
+    const filtrado = this.state.subjects.map((subject) => {
+      if (!subject.isDeleted) {
+        return subject.links.filter((link) => {
+          return link.title.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1;
+        });
+      }
+    });
+
+    const merged = [].concat.apply([], filtrado);
+    return merged;
+  }
+
   render() {
     return (
       <div>
-        <ButtonNew handleOpenInputSubject={this.handleOpenInputSubject} />
+        <BarSubjects
+          handleOpenInputSubject={this.handleOpenInputSubject}
+          handleSearch={this.handleSearch}
+        />
+
+        {this.filterSearch().map(index => index.title)}
+
         {this.renderInputSubject()}
 
         <NavSubjects

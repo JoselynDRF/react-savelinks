@@ -20,13 +20,7 @@ function InputSubject({ handleCloseInputSubject, handleAddNewSubject }) {
       <Form onSubmit={handleAddNewSubject} className="form-subject-container">
         <FormGroup>
           <Label for="inputSubject" className="label-subject-form"> Nombre del tema: </Label>
-          <Input
-            id="inputSubject"
-            type="text"
-            className="form-control"
-            name="text"
-            placeholder="Ej. Recetas"
-          />
+          <Input id="inputSubject" type="text" name="text" placeholder="Ej. Recetas" />
         </FormGroup>
 
         <Row>

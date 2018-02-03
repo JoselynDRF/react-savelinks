@@ -13,12 +13,7 @@ function InputLink({ handleCloseInputLink, handleAddNewLink }) {
     <div>
       <Form onSubmit={handleAddNewLink} className="form-container">
         <FormGroup>
-          <Input
-            type="text"
-            className="form-control"
-            placeholder="URL del nuevo link"
-            name="text"
-          />
+          <Input type="text" placeholder="URL del nuevo link" name="text" />
         </FormGroup>
 
         <Row>
