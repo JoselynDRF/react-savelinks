@@ -11,25 +11,26 @@ const propTypes = {
 function InputSubject({ handleCloseInputSubject, handleAddNewSubject }) {
   return (
     <Container>
-      <Row>
+      <Col className="form-subject-container">
         <Col className="text-center">
           <span className="title-subject-form"> Crea un nuevo tema! </span>
         </Col>
-      </Row>
 
-      <Form onSubmit={handleAddNewSubject} className="form-subject-container">
-        <FormGroup>
-          <Label for="inputSubject" className="label-subject-form"> Nombre del tema: </Label>
-          <Input id="inputSubject" type="text" name="text" placeholder="Ej. Recetas" />
-        </FormGroup>
+        <Form onSubmit={handleAddNewSubject}>
+          <FormGroup>
+            <Label for="inputSubject" className="label-subject-form"> Nombre del tema: </Label>
+            <Input id="inputSubject" type="text" name="text" placeholder="Ej. Recetas" />
+          </FormGroup>
 
-        <Row>
-          <Col className="text-right">
-            <Button className="btn btn-secondary" onClick={handleCloseInputSubject}> Cerrar </Button>
-            <Button type="submit" className="btn btn-form-subject-primary"> Enviar </Button>
-          </Col>
-        </Row>
-      </Form>
+          <Row>
+            <Col className="text-right">
+              <Button className="btn btn-secondary" onClick={handleCloseInputSubject}> Cerrar </Button>
+              <Button type="submit" className="btn btn-form-subject-primary"> Enviar </Button>
+            </Col>
+          </Row>
+        </Form>
+
+      </Col>
     </Container>
   );
 }

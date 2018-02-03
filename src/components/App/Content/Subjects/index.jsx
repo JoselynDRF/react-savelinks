@@ -6,6 +6,7 @@ import ResourcesSubject from './ResourcesSubject';
 import InputSubject from './InputSubject';
 import NavSubjects from './NavSubjects';
 import BarSubjects from './BarSubjects';
+import SearchResults from './SearchResults';
 // import { post, put } from './../../HttpServices/index';
 import './subjects.css';
 
@@ -14,6 +15,7 @@ class Subjects extends Component {
     super(props);
     this.state = {
       filterText: '',
+      openSearchResult: true,
       openInputLink: false,
       openInputSubject: false,
       subjects: [{
@@ -33,8 +35,8 @@ class Subjects extends Component {
     this.handleAddNewLink = this.handleAddNewLink.bind(this);
     this.handleDeleteLink = this.handleDeleteLink.bind(this);
     this.handleFavorites = this.handleFavorites.bind(this);
-
     this.handleSearch = this.handleSearch.bind(this);
+    this.filterSearch = this.filterSearch.bind(this);
   }
 
   // Get subjects from service
@@ -252,16 +254,29 @@ class Subjects extends Component {
 
   filterSearch() {
     const filtrado = this.state.subjects.map((subject) => {
-      if (!subject.isDeleted) {
-        return subject.links.filter((link) => {
+
+      return subject.links.filter((link) => {
+        if (!link.isDeleted) {
           return link.title.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1;
-        });
-      }
+        }
+      });
     });
 
     const merged = [].concat.apply([], filtrado);
     return merged;
   }
+
+  renderSearchResults() { // eslint-disable-line
+    if (this.state.openSearchResult) {
+      return (
+        <SearchResults
+          filterText={this.state.filterText}
+          filterSearch={this.filterSearch}
+        />
+      );
+    }
+  }
+  // HASTA AQUI
 
   render() {
     return (
@@ -271,9 +286,8 @@ class Subjects extends Component {
           handleSearch={this.handleSearch}
         />
 
-        {this.filterSearch().map(index => index.title)}
-
         {this.renderInputSubject()}
+        {this.renderSearchResults()}
 
         <NavSubjects
           subjects={this.state.subjects}
