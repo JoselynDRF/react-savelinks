@@ -22,3 +22,14 @@
 .link-search {
   font-size: 15px;
 }
+
+.icon-close {
+  color: #526278;
+  cursor: pointer;
+  font-size: 22px;
+  margin: 0 4px;
+}
+
+.icon-close:hover i::before {
+  color: #48576a;
+}

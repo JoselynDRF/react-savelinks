@@ -10,10 +10,22 @@ function SearchBar({ handleSearch }) {
   return (
     <Form>
       <FormGroup>
-        <Input type="text" placeholder="Buscar" name="search" onChange={handleSearch} />
+        <Input
+          type="text"
+          placeholder="Buscar"
+          name="search"
+          onChange={handleSearch}
+          onKeyDown={onEnterSearch}
+        />
       </FormGroup>
     </Form>
   );
+}
+
+function onEnterSearch(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+  }
 }
 
 SearchBar.propTypes = propTypes;

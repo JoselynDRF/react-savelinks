@@ -14,8 +14,8 @@ class Subjects extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filterText: '',
-      openSearchResult: true,
+      searchText: '',
+      openSearchResults: false,
       openInputLink: false,
       openInputSubject: false,
       subjects: [{
@@ -36,7 +36,7 @@ class Subjects extends Component {
     this.handleDeleteLink = this.handleDeleteLink.bind(this);
     this.handleFavorites = this.handleFavorites.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.filterSearch = this.filterSearch.bind(this);
+    this.handleCloseSearchResults = this.handleCloseSearchResults.bind(this);
   }
 
   // Get subjects from service
@@ -230,6 +230,21 @@ class Subjects extends Component {
     });
   }
 
+  // Open search results and update search value
+  handleSearch(event) {
+    this.setState({
+      openSearchResults: true,
+      searchText: event.target.value,
+    });
+  }
+
+  // Close search results
+  handleCloseSearchResults() {
+    this.setState({
+      openSearchResults: false,
+    });
+  }
+
 
   // ******************** RENDER ******************** //
 
@@ -245,38 +260,18 @@ class Subjects extends Component {
     }
   }
 
-  // NNUEVOOOOOOOOOOOOOOOOOOOOOOOOS
-  handleSearch(event) {
-    this.setState({
-      filterText: event.target.value,
-    });
-  }
-
-  filterSearch() {
-    const filtrado = this.state.subjects.map((subject) => {
-
-      return subject.links.filter((link) => {
-        if (!link.isDeleted) {
-          return link.title.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1;
-        }
-      });
-    });
-
-    const merged = [].concat.apply([], filtrado);
-    return merged;
-  }
-
+  // Render search results
   renderSearchResults() { // eslint-disable-line
-    if (this.state.openSearchResult) {
+    if (this.state.openSearchResults) {
       return (
         <SearchResults
-          filterText={this.state.filterText}
-          filterSearch={this.filterSearch}
+          subjects={this.state.subjects}
+          searchText={this.state.searchText}
+          handleCloseSearchResults={this.handleCloseSearchResults}
         />
       );
     }
   }
-  // HASTA AQUI
 
   render() {
     return (
