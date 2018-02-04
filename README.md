@@ -1,7 +1,18 @@
 # ReactJS - SaveLinks
-Proyecto con fines educativos para poner en práctica el uso de la librería ReactJS.
+Project for educational purposes (ReactJS).
 
-## Instrucciones:
-* `npm install` para instalar las dependencias
-* `npm start` para correr el proyecto
-* Acceder a `http://localhost:8080/`
+## Getting Started
+
+### Dependencies:
+Tools needed to run this app: `node` and `npm`
+
+### Installing:
+* `npm install` to install dependencies
+* `npm install -g json-server` to get a full fake REST API
+
+### Running the App:
+After you have installed all dependencies, you may run the app.
+
+- `json-server --watch db.json`
+- `npm start`
+- Go to `http://localhost:8080/`
