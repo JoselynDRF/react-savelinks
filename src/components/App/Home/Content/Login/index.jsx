@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Col, Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
+
 import './login.css';
 
-import Header from './Header';
+const propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+};
 
 class Login extends Component {
   constructor(props) {
@@ -12,16 +16,6 @@ class Login extends Component {
       formFields: {},
       userValid: false,
       formErrors: false,
-      users: [
-        {
-          username: 'JoselynDRF',
-          password: '1234',
-        },
-        {
-          username: 'UserTest',
-          password: '1111',
-        },
-      ],
     };
 
     this.onDismissAlert = this.onDismissAlert.bind(this);
@@ -65,7 +59,7 @@ class Login extends Component {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    const checkedUser = this.state.users.filter(user => user.username === username && user.password === password)[0];
+    const checkedUser = this.props.users.filter(user => user.username === username && user.password === password)[0];
 
     if (checkedUser) {
       this.setState({
@@ -83,9 +77,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        { (this.state.userValid) ? <Redirect to="/subjects" /> : false }
-
-        <Header />
+        { (this.state.userValid) ? <Redirect to="/dashboard" /> : false }
 
         <div className="d-flex justify-content-center mt-4">
           <Col xs={12} sm={8} lg={6} className="login-container">
@@ -129,10 +121,10 @@ class Login extends Component {
             </Form>
           </Col>
         </div>
-
       </div>
     );
   }
 }
 
+Login.propTypes = propTypes;
 export default Login;
