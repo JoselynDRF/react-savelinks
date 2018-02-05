@@ -7,3 +7,12 @@
 .label-login-form {
   font-weight: 500;
 }
+
+.btn-login {
+  background-color: #526278;
+  color: white;
+}
+
+.btn-login:enabled:hover {
+  background-color: #48576a;
+}
