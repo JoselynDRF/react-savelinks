@@ -65,6 +65,14 @@ class ResourcesSubject extends Component {
   renderLinksFavorites() {
     const linksFavorites = this.getLinksFavorites();
 
+    if (linksFavorites.length === 0) {
+      return (
+        <div className="p-3 text-center">
+          <span> No tienes links favoritos! </span>
+        </div>
+      );
+    }
+
     return linksFavorites.map(favorite => (
       <Resource
         key={favorite.id}
@@ -89,6 +97,41 @@ class ResourcesSubject extends Component {
     ));
   }
 
+  renderLinks() {
+    const links = this.props.activeSubject.links.filter(link => !link.isDeleted);
+
+    if (links.length > 0) {
+      return (
+        <div>
+          <div>
+            <div className="favorites-container">
+              <span> Favoritos </span>
+            </div>
+            {this.renderLinksFavorites()}
+          </div>
+
+          {
+            (this.getOthersLinks().length > 0)
+              ?
+                <div>
+                  <div className="others-container">
+                    <span> Otros </span>
+                  </div>
+                  {this.renderOthersLinks()}
+                </div>
+              : false
+            }
+        </div>
+      );
+    }
+
+    return (
+      <div className="p-3 text-center">
+        <span> No existen links para este tema, adiciona uno nuevo! </span>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className="resources-container">
@@ -98,21 +141,7 @@ class ResourcesSubject extends Component {
         />
 
         {this.renderInputLink()}
-
-        <div>
-          <div className="favorites-container">
-            <span> Favoritos </span>
-          </div>
-          {this.renderLinksFavorites()}
-        </div>
-
-        <div>
-          <div className="others-container">
-            <span> Otros </span>
-          </div>
-          {this.renderOthersLinks()}
-        </div>
-
+        {this.renderLinks()}
       </div>
     );
   }

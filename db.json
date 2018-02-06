@@ -85,6 +85,12 @@
           "isDeleted": false
         }
       ]
+    },
+    {
+      "id": "a68085bc-bf92-4239-b739-477a5be13a43",
+      "name": "Videos",
+      "active": false,
+      "links": []
     }
   ]
 }

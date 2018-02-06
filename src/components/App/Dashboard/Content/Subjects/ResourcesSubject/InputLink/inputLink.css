@@ -10,6 +10,6 @@
   margin-left: 4px;
 }
 
-.btn-form-primary:hover {
+.btn-form-primary:enabled:hover {
   background-color: #48576a;
 }

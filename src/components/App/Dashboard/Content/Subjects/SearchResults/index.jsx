@@ -27,18 +27,24 @@ function SearchResults({ subjects, searchText, handleCloseSearchResults }) {
         <hr />
 
         <Col className="results-container">
-          <ul>
-            {
-              filterSearch(subjects, searchText).map(result =>
-                (
-                  <li key={result.id} className="list-results">
-                    <span className="resource-title"> {result.title } - </span>
-                    <a className="link-search" href={result.url}> {result.url} </a> <br />
-                    <span className="resource-description"> {result.description} </span> <br />
-                  </li>
-                ))
-            }
-          </ul>
+          { (filterSearch(subjects, searchText).length > 0) ?
+            <ul>
+              {
+                filterSearch(subjects, searchText).map(result =>
+                  (
+                    <li key={result.id} className="list-results">
+                      <span className="resource-title"> {result.title } - </span>
+                      <a className="link-search" href={result.url}> {result.url} </a> <br />
+                      <span className="resource-description"> {result.description} </span> <br />
+                    </li>
+                  ))
+              }
+            </ul>
+            :
+            <div className="p-3 text-center">
+              <span> No se encontraron resultados para tu búsqueda </span>
+            </div>
+          }
         </Col>
       </Col>
     </Container>
