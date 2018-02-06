@@ -7,7 +7,7 @@ import InputSubject from './InputSubject';
 import NavSubjects from './NavSubjects';
 import BarSubjects from './BarSubjects';
 import SearchResults from './SearchResults';
-// import { post, put } from './../../HttpServices/index';
+// import { post, put } from './../../../HttpServices';
 import './subjects.css';
 
 class Subjects extends Component {
@@ -16,6 +16,7 @@ class Subjects extends Component {
     this.state = {
       searchText: '',
       textInputSubject: '',
+      textInputLink: '',
       openSearchResults: false,
       openInputLink: false,
       openInputSubject: false,
@@ -39,6 +40,8 @@ class Subjects extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleCloseSearchResults = this.handleCloseSearchResults.bind(this);
     this.handleValueInputSubject = this.handleValueInputSubject.bind(this);
+
+    this.handleValueInputLink = this.handleValueInputLink.bind(this);
   }
 
   // Get subjects from service
@@ -214,6 +217,7 @@ class Subjects extends Component {
     this.setState({
       subjects,
       openInputLink: false,
+      textInputLink: '',
     });
   }
 
@@ -252,6 +256,13 @@ class Subjects extends Component {
   handleValueInputSubject(event) {
     this.setState({
       textInputSubject: event.target.value,
+    });
+  }
+
+  // Update value InputLink
+  handleValueInputLink(event) {
+    this.setState({
+      textInputLink: event.target.value,
     });
   }
 
@@ -303,12 +314,14 @@ class Subjects extends Component {
 
         <ResourcesSubject
           activeSubject={this.getActiveSubjectResources()}
+          textInputLink={this.state.textInputLink}
           openInputLink={this.state.openInputLink}
           handleOpenInputLink={this.handleOpenInputLink}
           handleCloseInputLink={this.handleCloseInputLink}
           handleAddNewLink={this.handleAddNewLink}
           handleFavorites={this.handleFavorites}
           handleDeleteLink={this.handleDeleteLink}
+          handleValueInputLink={this.handleValueInputLink}
         />
       </div>
     );

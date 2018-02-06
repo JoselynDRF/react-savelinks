@@ -12,12 +12,14 @@ const propTypes = {
     name: PropTypes.string,
     links: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+  textInputLink: PropTypes.string.isRequired,
   openInputLink: PropTypes.bool.isRequired,
   handleOpenInputLink: PropTypes.func.isRequired,
   handleCloseInputLink: PropTypes.func.isRequired,
   handleAddNewLink: PropTypes.func.isRequired,
   handleFavorites: PropTypes.func.isRequired,
   handleDeleteLink: PropTypes.func.isRequired,
+  handleValueInputLink: PropTypes.func.isRequired,
 };
 
 class ResourcesSubject extends Component {
@@ -50,8 +52,10 @@ class ResourcesSubject extends Component {
     if (this.props.openInputLink) {
       return (
         <InputLink
+          textInputLink={this.props.textInputLink}
           handleCloseInputLink={this.props.handleCloseInputLink}
           handleAddNewLink={this.props.handleAddNewLink}
+          handleValueInputLink={this.props.handleValueInputLink}
         />
       );
     }
