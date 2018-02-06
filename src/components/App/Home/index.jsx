@@ -7,13 +7,14 @@ import Content from './Content';
 const propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   infoApp: PropTypes.shape().isRequired,
+  handleCurrentUser: PropTypes.func.isRequired,
 };
 
-function Home({ users, infoApp }) {
+function Home({ users, infoApp, handleCurrentUser }) {
   return (
     <div>
       <Header data={infoApp} />
-      <Content users={users} />
+      <Content users={users} handleCurrentUser={handleCurrentUser} />
     </div>
   );
 }

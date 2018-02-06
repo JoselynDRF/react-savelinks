@@ -13,11 +13,7 @@ class App extends Component {
         name: 'SaveLinks',
         photoProfile: 'img/logo.png',
       },
-      currentUser: {
-        name: 'JoselynDRF',
-        photoProfile: 'img/user-profile.png',
-        session: true,
-      },
+      currentUser: {},
       users: [
         {
           username: 'JoselynDRF',
@@ -29,6 +25,21 @@ class App extends Component {
         },
       ],
     };
+
+    this.handleCurrentUser = this.handleCurrentUser.bind(this);
+  }
+
+  // Get form fields values
+  handleCurrentUser(username) {
+    const currentUser = {
+      name: username,
+      photoProfile: 'img/user-profile.png',
+      session: true,
+    };
+
+    this.setState({
+      currentUser,
+    });
   }
 
   render() {
@@ -39,7 +50,12 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={() => (<Home users={this.state.users} infoApp={this.state.infoApp} />)}
+              render={() => (
+                <Home
+                  users={this.state.users}
+                  infoApp={this.state.infoApp}
+                  handleCurrentUser={this.handleCurrentUser}
+                />)}
             />
             <Route
               exact

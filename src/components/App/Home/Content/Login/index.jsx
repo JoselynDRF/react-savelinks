@@ -7,6 +7,7 @@ import './login.css';
 
 const propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  handleCurrentUser: PropTypes.func.isRequired,
 };
 
 class Login extends Component {
@@ -74,10 +75,23 @@ class Login extends Component {
     }
   }
 
+  // Check user valid and redirect
+  checkUserValid() {
+    const { username } = this.state.formFields;
+    if (this.state.userValid) {
+      this.props.handleCurrentUser(username);
+      return (
+        <div>
+          <Redirect to="/dashboard" />
+        </div>
+      );
+    } return false;
+  }
+
   render() {
     return (
       <div>
-        { (this.state.userValid) ? <Redirect to="/dashboard" /> : false }
+        {this.checkUserValid()}
 
         <div className="d-flex justify-content-center mt-4">
           <Col xs={12} sm={10} lg={6} className="login-container">
@@ -90,7 +104,7 @@ class Login extends Component {
                   type="text"
                   name="username"
                   id="username"
-                  placeholder="JoselynDRF"
+                  placeholder="UserTest"
                   onChange={e => this.getFormFieldsValues('username', e)}
                 />
               </FormGroup>
@@ -100,7 +114,7 @@ class Login extends Component {
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="1234"
+                  placeholder="1111"
                   onChange={e => this.getFormFieldsValues('password', e)}
                 />
               </FormGroup>
