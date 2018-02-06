@@ -8,6 +8,10 @@
   font-weight: 500;
 }
 
+.title-login {
+  color: #526278;
+}
+
 .btn-login {
   background-color: #526278;
   color: white;

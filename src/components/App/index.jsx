@@ -9,9 +9,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      infoApp: {
+        name: 'SaveLinks',
+        photoProfile: 'img/logo.png',
+      },
       currentUser: {
         name: 'JoselynDRF',
         photoProfile: 'img/user-profile.png',
+        session: true,
       },
       users: [
         {
@@ -34,7 +39,7 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={() => (<Home users={this.state.users} />)}
+              render={() => (<Home users={this.state.users} infoApp={this.state.infoApp} />)}
             />
             <Route
               exact

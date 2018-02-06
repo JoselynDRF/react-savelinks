@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Header from './Header';
+import Header from './../common/Header';
 import Content from './Content';
 
 const propTypes = {
@@ -11,7 +11,7 @@ const propTypes = {
 function Dashboard({ user }) {
   return (
     <div>
-      <Header user={user} />
+      <Header data={user} />
       <Content />
     </div>
   );

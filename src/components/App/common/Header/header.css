@@ -3,16 +3,21 @@
   padding: 20px 10px 10px 10px;
 }
 
-.app-logo {
+.header-img {
   height: 32px;
   margin-right: 10px;
 }
 
-.app-name {
+.header-title {
   color: #fff;
   font-size: 18px;
 }
 
-.title-login {
-  color: #526278;
+.link-logout {
+  text-decoration: none;
+  color: #fff;
+}
+
+.link-logout:hover {
+  color: #fff;
 }

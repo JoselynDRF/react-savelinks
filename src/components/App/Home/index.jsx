@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Header from './Header';
+import Header from './../common/Header';
 import Content from './Content';
 
 const propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  infoApp: PropTypes.shape().isRequired,
 };
 
-function Home({ users }) {
+function Home({ users, infoApp }) {
   return (
     <div>
-      <Header />
+      <Header data={infoApp} />
       <Content users={users} />
     </div>
   );

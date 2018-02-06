@@ -4,22 +4,22 @@ import PropTypes from 'prop-types';
 import './header.css';
 
 const propTypes = {
-  user: PropTypes.shape({
+  data: PropTypes.shape({
     name: PropTypes.string,
     photoProfile: PropTypes.string,
   }).isRequired,
 };
 
-function Header({ user }) {
+function Header({ data }) {
   return (
     <header className="header-container">
       <div className="container">
         <div className="resources-header d-flex justify-content-between">
           <div>
-            <img className="profile-img" src={user.photoProfile} alt="" />
-            <span className="user-name"> {user.name} </span>
+            <img className="header-img" src={data.photoProfile} alt="" />
+            <span className="header-title"> {data.name} </span>
           </div>
-          <Link to="/" className="link-logout"> Cerrar sesión </Link>
+          {(data.session) ? <Link to="/" className="link-logout"> Cerrar sesión </Link> : false}
         </div>
       </div>
     </header>
