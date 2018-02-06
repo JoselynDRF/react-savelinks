@@ -63,6 +63,7 @@ class Login extends Component {
     const checkedUser = this.props.users.filter(user => user.username === username && user.password === password)[0];
 
     if (checkedUser) {
+      this.props.handleCurrentUser(username);
       this.setState({
         userValid: true,
         formErrors: false,
@@ -77,9 +78,7 @@ class Login extends Component {
 
   // Check user valid and redirect
   checkUserValid() {
-    const { username } = this.state.formFields;
     if (this.state.userValid) {
-      this.props.handleCurrentUser(username);
       return (
         <div>
           <Redirect to="/dashboard" />
