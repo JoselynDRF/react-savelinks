@@ -80,7 +80,7 @@ class Login extends Component {
         { (this.state.userValid) ? <Redirect to="/dashboard" /> : false }
 
         <div className="d-flex justify-content-center mt-4">
-          <Col xs={12} sm={8} lg={6} className="login-container">
+          <Col xs={12} sm={10} lg={6} className="login-container">
             <h1 className="text-center title-login"> Login </h1>
 
             <Form onSubmit={this.checkLoginForm}>

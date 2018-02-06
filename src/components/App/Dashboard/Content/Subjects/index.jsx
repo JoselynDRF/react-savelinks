@@ -15,6 +15,7 @@ class Subjects extends Component {
     super(props);
     this.state = {
       searchText: '',
+      textInputSubject: '',
       openSearchResults: false,
       openInputLink: false,
       openInputSubject: false,
@@ -37,6 +38,7 @@ class Subjects extends Component {
     this.handleFavorites = this.handleFavorites.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleCloseSearchResults = this.handleCloseSearchResults.bind(this);
+    this.handleValueInputSubject = this.handleValueInputSubject.bind(this);
   }
 
   // Get subjects from service
@@ -201,6 +203,7 @@ class Subjects extends Component {
     this.setState({
       subjects,
       openInputSubject: false,
+      textInputSubject: '',
     });
   }
 
@@ -245,6 +248,13 @@ class Subjects extends Component {
     });
   }
 
+  // Update value InputSubject
+  handleValueInputSubject(event) {
+    this.setState({
+      textInputSubject: event.target.value,
+    });
+  }
+
 
   // ******************** RENDER ******************** //
 
@@ -253,8 +263,10 @@ class Subjects extends Component {
     if (this.state.openInputSubject) {
       return (
         <InputSubject
+          textInputSubject={this.state.textInputSubject}
           handleCloseInputSubject={this.handleCloseInputSubject}
           handleAddNewSubject={this.handleAddNewSubject}
+          handleValueInputSubject={this.handleValueInputSubject}
         />
       );
     }
