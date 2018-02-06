@@ -4,6 +4,8 @@ import './app.css';
 
 import Dashboard from './Dashboard';
 import Home from './Home';
+import imgLogo from './../../assets/img/logo.png';
+import imgProfile from './../../assets/img/profile.png';
 
 class App extends Component {
   constructor() {
@@ -11,9 +13,13 @@ class App extends Component {
     this.state = {
       infoApp: {
         name: 'SaveLinks',
-        photoProfile: 'img/logo.png',
+        photoProfile: imgLogo,
       },
-      currentUser: {},
+      currentUser: {
+        name: 'Username',
+        photoProfile: imgProfile,
+        session: true,
+      },
       users: [
         {
           username: 'JoselynDRF',
@@ -33,7 +39,7 @@ class App extends Component {
   handleCurrentUser(username) {
     const currentUser = {
       name: username,
-      photoProfile: 'img/user-profile.png',
+      photoProfile: imgProfile,
       session: true,
     };
 

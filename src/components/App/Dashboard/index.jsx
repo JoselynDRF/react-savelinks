@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from './../common/Header';
 import Content from './Content';
+import './../../../assets/img/favicon.ico';
 
 const propTypes = {
   user: PropTypes.shape().isRequired,

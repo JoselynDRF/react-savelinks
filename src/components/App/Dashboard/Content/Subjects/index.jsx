@@ -8,6 +8,10 @@ import NavSubjects from './NavSubjects';
 import BarSubjects from './BarSubjects';
 import SearchResults from './SearchResults';
 // import { post, put } from './../../../HttpServices';
+
+import imgDefault from './../../../../../assets/img/default.png';
+import './../../../../../assets/img/react.png';
+import './../../../../../assets/img/angular.png';
 import './subjects.css';
 
 class Subjects extends Component {
@@ -92,10 +96,10 @@ class Subjects extends Component {
       id: uuid.v4(),
       url: event.target.text.value,
       title: 'New link',
-      picture: 'img/youtube.jpg',
-      description: 'ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
-      observation: 'Nuevo link',
-      autor: 'JoselynDRF',
+      picture: imgDefault,
+      description: 'No content yet',
+      observation: 'New link',
+      autor: 'Username',
       date: Date.now(),
       isFavorite: false,
     };
