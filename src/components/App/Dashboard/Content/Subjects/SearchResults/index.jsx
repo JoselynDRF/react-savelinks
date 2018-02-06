@@ -3,6 +3,8 @@ import { Container, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import './searchResults.css';
 
+import Message from './../../../../common/Message';
+
 const propTypes = {
   subjects: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   searchText: PropTypes.string.isRequired,
@@ -40,10 +42,7 @@ function SearchResults({ subjects, searchText, handleCloseSearchResults }) {
                   ))
               }
             </ul>
-            :
-            <div className="p-3 text-center">
-              <span> No se encontraron resultados para tu búsqueda </span>
-            </div>
+            : <Message message="No se encontraron resultados para tu búsqueda" />
           }
         </Col>
       </Col>

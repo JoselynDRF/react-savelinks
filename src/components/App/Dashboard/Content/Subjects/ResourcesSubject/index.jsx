@@ -6,6 +6,7 @@ import './resourcesSubject.css';
 import Resource from './Resource';
 import InputLink from './InputLink';
 import ResourcesHeader from './ResourcesHeader';
+import Message from './../../../../common/Message';
 
 const propTypes = {
   activeSubject: PropTypes.shape({
@@ -67,9 +68,7 @@ class ResourcesSubject extends Component {
 
     if (linksFavorites.length === 0) {
       return (
-        <div className="p-3 text-center">
-          <span> No tienes links favoritos! </span>
-        </div>
+        <Message message="No tienes links favoritos!" />
       );
     }
 
@@ -126,9 +125,7 @@ class ResourcesSubject extends Component {
     }
 
     return (
-      <div className="p-3 text-center">
-        <span> No existen links para este tema, adiciona uno nuevo! </span>
-      </div>
+      <Message message="No existen links para este tema, adiciona uno nuevo!" />
     );
   }
 
