@@ -7,7 +7,7 @@ import InputSubject from './InputSubject';
 import NavSubjects from './NavSubjects';
 import BarSubjects from './BarSubjects';
 import SearchResults from './SearchResults';
-// import { post, put } from './../../../HttpServices';
+import { post, put } from './../../../HttpServices';
 
 import imgDefault from './../../../../../assets/img/default.png';
 import './../../../../../assets/img/react.png';
@@ -86,7 +86,7 @@ class Subjects extends Component {
 
     const subjects = this.state.subjects.concat(newSubject);
 
-    // post(newSubject); // Update json server
+    post(newSubject); // Update json server
     return subjects;
   }
 
@@ -112,7 +112,7 @@ class Subjects extends Component {
         subject.links = subject.links.concat(newLink);
       }
 
-      // put(subject.id, subject); // Update json server
+      put(subject.id, subject); // Update json server
       return subject;
     });
 
@@ -134,7 +134,7 @@ class Subjects extends Component {
         });
       }
 
-      // put(subject.id, subject); // Update json server
+      put(subject.id, subject); // Update json server
       return subject;
     });
 
@@ -156,7 +156,7 @@ class Subjects extends Component {
         });
       }
 
-      // put(subject.id, subject); // Update json server
+      put(subject.id, subject); // Update json server
       return subject;
     });
 
