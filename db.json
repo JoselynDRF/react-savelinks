@@ -11,8 +11,8 @@
           "title": "Link 1 about ReactJS",
           "picture": "img/react.png",
           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "observation": "Interesante para aprender React",
-          "autor": "JoselynDRF",
+          "observation": "",
+          "autor": "",
           "date": "",
           "isFavorite": true,
           "isDeleted": false
@@ -23,8 +23,8 @@
           "title": "Link 2 about ReactJS",
           "picture": "img/react.png",
           "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "observation": "React mas avanzado",
-          "autor": "JoselynDRF",
+          "observation": "",
+          "autor": "",
           "date": "",
           "isFavorite": true,
           "isDeleted": false
@@ -35,8 +35,8 @@
           "title": "Link 3 about ReactJS",
           "picture": "img/react.png",
           "description": "Lorem ipsum dolor sit amet",
-          "observation": "React para novatos",
-          "autor": "JoselynDRF",
+          "observation": "",
+          "autor": "",
           "date": "",
           "isFavorite": false,
           "isDeleted": false
@@ -44,11 +44,11 @@
         {
           "id": "4",
           "url": "https://www.google.pt",
-          "title": "Link eliminado",
+          "title": "Link deleted",
           "picture": "img/react.png",
           "description": "Lorem ipsum dolor sit amet",
-          "observation": "React",
-          "autor": "JoselynDRF",
+          "observation": "",
+          "autor": "",
           "date": "",
           "isFavorite": false,
           "isDeleted": true
@@ -63,11 +63,11 @@
         {
           "id": "5",
           "url": "https://www.google.pt",
-          "title": "Link A sobre AngularJS",
+          "title": "Link 1 about AngularJS",
           "picture": "img/angular.png",
           "description": "T aliquip ex ea commodo consequat.",
-          "observation": "Angular para novatos",
-          "autor": "JoselynDRF",
+          "observation": "",
+          "autor": "",
           "date": "",
           "isFavorite": true,
           "isDeleted": false
@@ -75,11 +75,11 @@
         {
           "id": "6",
           "url": "https://www.google.pt",
-          "title": "Link B sobre AngularJS",
+          "title": "Link 2 about AngularJS",
           "picture": "img/angular.png",
           "description": "T aliquip ex ea commodo consequat.",
-          "observation": "Angular avanzado",
-          "autor": "JoselynDRF",
+          "observation": "",
+          "autor": "",
           "date": "",
           "isFavorite": false,
           "isDeleted": false

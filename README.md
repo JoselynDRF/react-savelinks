@@ -1,6 +1,15 @@
 # ReactJS - SaveLinks
 Project for educational purposes (ReactJS).
 
+## Features:
+* Login with client-side validation
+* Show subjects and links
+* Create new subject
+* Create and delete links
+* Search links
+* Favorites links
+* Responsive design with Bootstrap
+
 ## Getting Started
 
 ### Dependencies:
