@@ -34,7 +34,7 @@
     "install": "^0.10.2",
     "moment": "^2.20.1",
     "normalize-css": "^2.3.1",
-    "npm": "^5.6.0",
+    "npm": "^6.5.0",
     "open-graph": "^0.2.3",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
