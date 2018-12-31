@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.2.1",
     "install": "^0.10.2",
     "moment": "^2.20.1",
     "normalize-css": "^2.3.1",
