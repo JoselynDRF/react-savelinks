@@ -1,5 +1,5 @@
 # ReactJS - SaveLinks
-Project for educational purposes (ReactJS).
+Links Manager project with ReactJS and Bootstrap
 
 ## Features:
 * Login with client-side validation
