@@ -1,7 +1,6 @@
 {
   "name": "react-savelinks",
   "version": "1.0.0",
-  "description": "Project for educational purposes (ReactJS).",
   "main": "/build/app.js",
   "scripts": {
     "build": "webpack --colors",
@@ -9,8 +8,6 @@
     "json-server": "json-server --watch db.json",
     "start": "npm run build && npm run serve"
   },
-  "author": "Joselyn Dos Ramos",
-  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.6",
